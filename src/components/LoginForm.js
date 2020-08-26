@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/core';
 import { Button, Container, IconButton, InputAdornment, TextField } from '@material-ui/core';
 import { AccountCircle, Visibility, VisibilityOff } from '@material-ui/icons';
 
+import app from '../helpers/useFirebase';
 
 // style props
 const useStyles = makeStyles((theme) => ({
@@ -37,40 +39,57 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function LoginForm(){
+const LoginForm = ({history}) => {
 
+    //methods for password hiding/showing to user 
     const [ values, setValues ] = React.useState({
         password: '', 
         showPassword: false,
     });
-    
     const handleChange = (prop) => (e) => {
         setValues({ ...values, [prop]: e.target.value });
     };
-    
     const handleShowPassword = () => {
         setValues({ ...values, showPassword: !values.showPassword });
     }
-    
     const handleMouseDownPassword = (e) => {
         e.preventDefault();
     }
 
-
+    //methods for formatting 
     const classes = useStyles();
+
+    //methods for firebase 
+    const [username, setUsername] = useState('');
+    const handleLogin = async(e) =>{
+        e.preventDefault();
+        const { email, password } = {email: username, password: values.password};
+        console.log(username);
+        console.log(values.password)
+
+        try{
+            await app.auth().signInWithEmailAndPassword(email, password)
+            history.replace('/userPage')
+        } catch(err){
+            alert(err)
+        }
+    }
 
     return(
 
             <Container component="main" maxWidth="xs">
                 {/* <CssBaseline /> */}
                 <div className={classes.paper}>
-                    <form className={classes.form}>
+                    <form className={classes.form} onSubmit={handleLogin}>
                         <TextField
+                            onChange={(e) => {setUsername(e.target.value)}}
                             variant="outlined"
                             margin="normal"
                             required
                             fullWidth
+                            name="username"
                             id="username"
+                            value={username}
                             label="Username"
                             InputLabelProps={{
                                 className: classes.elementColor,
@@ -91,6 +110,7 @@ export default function LoginForm(){
                             margin="normal"
                             required
                             fullWidth
+                            name="password"
                             id="password"
                             label="Password"
                             type={values.showPassword ? 'text' : 'password'}
@@ -112,19 +132,17 @@ export default function LoginForm(){
                                 className: classes.input,
                             }}
                         />
+
+                        <Button
+                            variant="contained"
+                            type="submit"
+                            fullWidth
+                            className={classes.submit}>
+                                Sign In
+                        </Button>
                         
                     </form>
-
-                    <Button
-                    variant="contained"
-                    type="submit"
-                    fullWidth
-                    className={classes.submit}>
-                        Sign In
-                    </Button>
                 </div>
-
-
             </Container>
 
 
@@ -132,6 +150,6 @@ export default function LoginForm(){
     );
 }
 
-
+export default withRouter(LoginForm);
 
 
