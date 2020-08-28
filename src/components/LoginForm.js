@@ -7,6 +7,8 @@ import { AccountCircle, Visibility, VisibilityOff } from '@material-ui/icons';
 
 import app from '../helpers/useFirebase';
 
+import LoginTitle from './LoginTitle';
+
 // style props
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -21,11 +23,7 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(5),
     }, 
     input: {
-        color: 'white',
-        border: '0.5px solid white',
-    },
-    elementColor: {
-        color: 'white',
+        color: 'gray',
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
@@ -78,8 +76,7 @@ const LoginForm = ({history}) => {
     return(
 
             <Container component="main" maxWidth="xs">
-                {/* <CssBaseline /> */}
-                <div className={classes.paper}>
+                <LoginTitle />
                     <form className={classes.form} onSubmit={handleLogin}>
                         <TextField
                             onChange={(e) => {setUsername(e.target.value)}}
@@ -91,9 +88,6 @@ const LoginForm = ({history}) => {
                             id="username"
                             value={username}
                             label="Username"
-                            InputLabelProps={{
-                                className: classes.elementColor,
-                            }}
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position="start">
@@ -101,7 +95,6 @@ const LoginForm = ({history}) => {
                                     </InputAdornment>
                                 ),
                                 className: classes.input,
-                                //make sure to figure out how to inherit this to lessen code
                             }}
                         />
 
@@ -116,9 +109,6 @@ const LoginForm = ({history}) => {
                             type={values.showPassword ? 'text' : 'password'}
                             value={values.password}
                             onChange={handleChange('password')}
-                            InputLabelProps={{
-                                className: classes.elementColor,
-                            }}
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position="end">
@@ -142,7 +132,7 @@ const LoginForm = ({history}) => {
                         </Button>
                         
                     </form>
-                </div>
+
             </Container>
 
 

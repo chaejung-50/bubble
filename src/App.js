@@ -15,7 +15,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path='/' component={ LandingPage }/>
-          <PrivateRoute exact path='userPage' component={ UserPage }/>
+          <PrivateRoute exact path='/userPage' component={ UserPage }/>
         </Switch>
       </Router>
     </AuthProvider>

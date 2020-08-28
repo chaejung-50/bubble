@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PopularStocks = () => {
+const Watchlist = () => {
     return(
         <div>
 
@@ -8,4 +8,4 @@ const PopularStocks = () => {
     );
 };
 
-export default PopularStocks;
+export default Watchlist;
