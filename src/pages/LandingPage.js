@@ -1,5 +1,4 @@
 import React from 'react';
-
 import LoginForm from '../components/LoginForm';
 import LoginHelper from '../components/LoginHelper';
 
@@ -10,7 +9,7 @@ const LandingPage = () => {
         <LoginHelper />
         </>
     );
-}
+};
 
 export default LandingPage;
 

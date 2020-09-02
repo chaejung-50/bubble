@@ -2,15 +2,17 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
+require('dotenv').config();
+
 const app = firebase.initializeApp({
-    apiKey: "AIzaSyA50U_noQlIhBE6sDg_x3rMyC6zClRDACY",
-    authDomain: "linger-271221.firebaseapp.com",
-    databaseURL: "https://linger-271221.firebaseio.com",
+    apiKey: process.env.REACT_APP_IEX_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_URL,
     projectId: "linger-271221",
-    storageBucket: "linger-271221.appspot.com",
-    messagingSenderId: "985392384487",
-    appId: "1:985392384487:web:8ea09082e4c30f7b1d9542",
-    measurementId: "G-F5073V0M8M"
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 });
 
 

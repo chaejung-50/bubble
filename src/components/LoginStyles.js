@@ -15,7 +15,7 @@ const Global = createGlobalStyle`
     width: 100%;
     overflow: hidden;
     user-select: none;
-    padding: 20px;
+    padding: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,9 +25,10 @@ const Global = createGlobalStyle`
 const Container = styled(animated.div)`
   position: relative;
   display: grid;
-  grid-template-columns: repeat(4, minmax(100px, 1fr));
+  grid-template-rows: repeat(4, minmax(100px, 1fr));
   grid-gap: 25px;
   padding: 25px;
+  overflow: auto;
   background: white;
   border-radius: 5px;
   cursor: pointer;
@@ -38,7 +39,7 @@ const Container = styled(animated.div)`
 const Item = styled(animated.div)`
   width: 100%;
   height: 100%;
-  background: white;
+  background: 'white';
   border-radius: 5px;
   will-change: transform, opacity;
 `

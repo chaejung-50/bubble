@@ -1,13 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 body {
-  /* background-color: #212121; */
-  /* color: white; */
-
+  color: 'gray';
   font-family: 'Montserrat', sans-serif;
+}
 
+/* base for divs */
+.row {
+  display: flex;
+  flex-direction: row;
+}
 
-  /* #333333  for the light dark shades */
+/* base for font */
+.bolder {
+  font-weight: bolder;
+}
+
+.errorText {
+  color: red;
+  font-size: '10px'
 }
 
 .gridContainer {
@@ -27,18 +38,11 @@ body {
   display: flex;
   flex-direction: column;
 
-  /* border-style: dotted;
-  border-color: white;  */
-
   width: 100vw;
   height: 98vh;
-  /* //margin: 0vh 5vw 0vh 5vw; */
+
 }
 
-.row {
-  display: flex;
-  flex-direction: row;
-}
 
 .rowHeight {
   height: 40vh;
@@ -67,6 +71,22 @@ body {
   flex: 0 0 auto;
   height: 100%;
   border-radius: 25px;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+
+
+.logo {
+  font-weight: bolder;
+  color: gray;
+  font-size: 30px;
+  padding-top: 3vh;
+}
+.logo:hover{
+  cursor: pointer;
 }
 
 /* .card-slim {
@@ -99,6 +119,61 @@ body {
 }
 
 
+.searchBarDropdown {
+  height: 300px;
+  overflow: scroll;
+  position: absolute;
+
+  background-color: white;
+  padding-left: 10px;
+}
+
+.searchBarContent :hover {
+  color: #e8b225;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:50%;
+  height: 50%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-main {
+  position:fixed;
+  background: white;
+  width: 80%;
+  height: auto;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+
+
+
+.buttonSm {
+  padding: 3px;
+
+}
+
+.buttonSm:hover {
+  cursor: pointer;
+}
 
 
 
@@ -117,7 +192,7 @@ body {
   font-family: sans-serif;
   text-align: center;
 }
-
+/* 
 ul,
 li {
   list-style: none;
@@ -146,7 +221,7 @@ li {
 
 li:last-child {
   margin-bottom: 0px;
-}
+} */
 
 
 .avatar {

@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
-
 import { makeStyles } from '@material-ui/core';
 import { Button, Container, IconButton, InputAdornment, TextField } from '@material-ui/core';
 import { AccountCircle, Visibility, VisibilityOff } from '@material-ui/icons';
-
 import app from '../helpers/useFirebase';
-
 import LoginTitle from './LoginTitle';
 
-// style props
 const useStyles = makeStyles((theme) => ({
     paper: {
         marginTop: theme.spacing(8),
@@ -35,11 +31,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-
-
 const LoginForm = ({history}) => {
-
-    //methods for password hiding/showing to user 
     const [ values, setValues ] = React.useState({
         password: '', 
         showPassword: false,
@@ -49,96 +41,83 @@ const LoginForm = ({history}) => {
     };
     const handleShowPassword = () => {
         setValues({ ...values, showPassword: !values.showPassword });
-    }
+    };
     const handleMouseDownPassword = (e) => {
         e.preventDefault();
-    }
+    };
 
-    //methods for formatting 
     const classes = useStyles();
 
-    //methods for firebase 
     const [username, setUsername] = useState('');
     const handleLogin = async(e) =>{
         e.preventDefault();
         const { email, password } = {email: username, password: values.password};
-        console.log(username);
-        console.log(values.password)
-
         try{
-            await app.auth().signInWithEmailAndPassword(email, password)
-            history.replace('/userPage')
+            await app.auth().signInWithEmailAndPassword(email, password);
+            history.replace('/userPage');
         } catch(err){
-            alert(err)
+            alert(err);
         }
-    }
+    };
 
     return(
-
-            <Container component="main" maxWidth="xs">
-                <LoginTitle />
-                    <form className={classes.form} onSubmit={handleLogin}>
-                        <TextField
-                            onChange={(e) => {setUsername(e.target.value)}}
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="username"
-                            id="username"
-                            value={username}
-                            label="Username"
-                            InputProps={{
-                                endAdornment: (
-                                    <InputAdornment position="start">
-                                        <AccountCircle />
-                                    </InputAdornment>
-                                ),
-                                className: classes.input,
-                            }}
-                        />
-
-                        <TextField
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            id="password"
-                            label="Password"
-                            type={values.showPassword ? 'text' : 'password'}
-                            value={values.password}
-                            onChange={handleChange('password')}
-                            InputProps={{
-                                endAdornment: (
-                                    <InputAdornment position="end">
-                                        <IconButton
-                                        onClick={handleShowPassword}
-                                        onMouseDown={handleMouseDownPassword}>
-                                            {values.showPassword ? <Visibility className={classes.elementColor} /> : <VisibilityOff className={classes.elementColor} /> }
-                                        </IconButton>
-                                    </InputAdornment>
-                                ),
-                                className: classes.input,
-                            }}
-                        />
-
-                        <Button
-                            variant="contained"
-                            type="submit"
-                            fullWidth
-                            className={classes.submit}>
-                                Sign In
-                        </Button>
-                        
-                    </form>
-
-            </Container>
-
-
-
+        <Container component="main" maxWidth="xs">
+            <LoginTitle />
+            <form className={classes.form} onSubmit={handleLogin}>
+                <TextField
+                    onChange={(e) => {setUsername(e.target.value)}}
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="username"
+                    id="username"
+                    value={username}
+                    label="Username"
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment position="start">
+                                <AccountCircle />
+                            </InputAdornment>
+                        ),
+                        className: classes.input,
+                    }}
+                />
+                <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="password"
+                    id="password"
+                    label="Password"
+                    type={values.showPassword ? 'text' : 'password'}
+                    value={values.password}
+                    onChange={handleChange('password')}
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton
+                                onClick={handleShowPassword}
+                                onMouseDown={handleMouseDownPassword}>
+                                    {values.showPassword ? <Visibility className={classes.elementColor} /> : <VisibilityOff className={classes.elementColor} /> }
+                                </IconButton>
+                            </InputAdornment>
+                        ),
+                        className: classes.input,
+                    }}
+                />
+                <Button
+                    variant="contained"
+                    type="submit"
+                    fullWidth
+                    className={classes.submit}>
+                        Sign In
+                </Button>
+            </form>
+        </Container>
     );
-}
+};
 
 export default withRouter(LoginForm);
 

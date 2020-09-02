@@ -3,7 +3,6 @@ import {useTransition, animated} from 'react-spring'
 
 
 const LoginTitle = () => {
-
     const [items, set] = useState([
         {key: 1, text: "B"},
         {key: 2, text: "U"},
@@ -13,10 +12,10 @@ const LoginTitle = () => {
         {key: 6, text: "E"}
     ]);
     const transitions = useTransition(items, item => item.key, {
-    from: { transform: 'translate3d(0,-40px,0)' },
-    enter: { transform: 'translate3d(0,0px,0)' },
-    leave: { transform: 'translate3d(0,-40px,0)' },
-    })
+        from: { transform: 'translate3d(0,-40px,0)' },
+        enter: { transform: 'translate3d(0,0px,0)' },
+        leave: { transform: 'translate3d(0,-40px,0)' },
+    });
 
     return(
         <div className="row">
@@ -25,7 +24,7 @@ const LoginTitle = () => {
                     key={key} 
                     style={props}
                 >
-                <p style={{ color: 'gray', fontSize: '25px', fontWeight: 'bolder' }}>{item.text}</p>
+                <p className='bolder' style={{ color: 'gray', fontSize: '25px'}}>{item.text}</p>
                 </animated.div>
             )}
         </div>
