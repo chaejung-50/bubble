@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 const SearchBar = () =>{
     
     const classes = useStyles();
-    const IE_API_KEY = REACT_APP_IEX_API_KEY_ONE;
+    const IE_API_KEY = process.dotenv.REACT_APP_IEX_API_KEY_ONE;
     const API_CALL_ = `https://cloud.iexapis.com/beta/ref-data/symbols?token=${IE_API_KEY}`;
     //for the search bar data to show 
     const [list, setList] = useState([]);
